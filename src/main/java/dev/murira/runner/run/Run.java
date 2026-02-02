@@ -6,7 +6,7 @@ public record Run(
         Integer id,
         String title,
         LocalDateTime startedOn,
-        LocalDateTime completedO
+        LocalDateTime completedOn
 ) {
 
 }

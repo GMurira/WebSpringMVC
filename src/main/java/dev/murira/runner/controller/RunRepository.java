@@ -8,6 +8,8 @@ import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 
 @Repository
 public class RunRepository {
@@ -17,11 +19,29 @@ public class RunRepository {
         return runs;
     }
 
-    Run findById(Integer id){
+    Optional<Run> findById(Integer id) {
         return runs.stream()
-                .filter(run -> run.id() ==id)
-                .findFirst()
-                .get();
+                .filter(run -> Objects.equals(run.id(), id))
+                .findFirst();
+    }
+
+    //create a run
+    void create(Run run) {
+        runs.add(run);
+    }
+
+    //update
+    void update(Run run, Integer id) {
+        Optional<Run> existingRun = findById(id);
+        if (existingRun.isPresent()) {
+            runs.set(runs.indexOf(existingRun.get()), run);
+        }
+    }
+
+
+    //delete
+    void delete(Integer id){
+
     }
 
     @PostConstruct
