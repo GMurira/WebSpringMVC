@@ -1,0 +1,17 @@
+### GET request to example server
+GET http://localhost:8080/api/runs/99
+
+###
+
+
+PUT http://localhost:8080/api/runs/5
+
+## Create a new run
+###
+POST http://localhost:8080/api/runs
+content-Type: application/json
+
+{
+  "id": 11,
+  "title": "Sunday run"
+}

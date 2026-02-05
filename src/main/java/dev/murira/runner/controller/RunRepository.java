@@ -40,8 +40,8 @@ public class RunRepository {
 
 
     //delete
-    void delete(Integer id){
-
+    void delete(Integer id) {
+        runs.removeIf(run -> run.id().equals(id));
     }
 
     @PostConstruct
