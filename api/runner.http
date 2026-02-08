@@ -1,5 +1,5 @@
 ### GET request to example server
-GET http://localhost:8080/api/runs/99
+GET http://localhost:8080/api/runs/19
 
 ###
 
@@ -12,6 +12,11 @@ POST http://localhost:8080/api/runs
 content-Type: application/json
 
 {
-  "id": 11,
-  "title": "Sunday run"
+  "id": 8,
+  "title": "Dovah's run",
+  "startedOn": "2026-02-07T10:47:10.770936704",
+  "completedOn": "2026-02-07T12:47:10.77094752"
 }
+
+###
+DELETE http://localhost:8080/ap/runs/8
