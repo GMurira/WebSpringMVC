@@ -19,4 +19,4 @@ content-Type: application/json
 }
 
 ###
-DELETE http://localhost:8080/ap/runs/8
+DELETE http://localhost:8080/api/runs/8

@@ -7,7 +7,6 @@ import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.Assert;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -35,12 +34,19 @@ public class RunRepository {
         Assert.state(updated == 1, "Failed to create run" + run.title());
     }
 
-    public Optional<Run> findById(Integer id){
+    public Optional<Run> findById(Integer id) {
         return jdbcClient.sql("SELECT id, title, started_on,completed_on FROM run WHERE id = :id")
-                .param("id",id)
+                .param("id", id)
                 .query(Run.class)
                 .optional();
     }
 
-    public
+    public void delete(Integer id) {
+        var updated = jdbcClient.sql("DELETE FROM run WHERE id = :id ")
+                .param("id", id)
+                .update();
+        if (updated == 0) {
+            throw new RuntimeException("Employee not found with id " + id);
+        }
+    }
 }
