@@ -49,4 +49,12 @@ public class RunRepository {
             throw new RuntimeException("Employee not found with id " + id);
         }
     }
+
+    public void saveAll(List<Run> runs) {
+        runs.stream().forEach(this::create);
+    }
+
+    public Integer count() {
+        return jdbcClient.sql("SELECT * FROM run").query().listOfRows().size();
+    }
 }
