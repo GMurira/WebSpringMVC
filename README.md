@@ -1,24 +1,91 @@
-🏃‍♂️ Runner Analytics - Spring Boot Web ApplicationA robust Spring Boot MVC application designed to track running activities. This project demonstrates modern Java development practices, including automated data seeding, PostgreSQL integration, and a RESTful architecture.🚀 Key FeaturesDatabase Persistence: Fully integrated with PostgreSQL for reliable data storage.Automated Data Loading: On startup, the application checks the database; if empty, it automatically seeds data from src/main/resources/data/runs.json.Spring Data JPA: Utilizes repository patterns for clean and efficient data access.RESTful API: Provides endpoints to manage and retrieve run data.Logging: Detailed SLF4J logging for monitoring data migration and application health.🛠️ Technology StackTechnologyPurposeJava 17+Programming LanguageSpring Boot 4.0Core FrameworkPostgreSQLRelational DatabaseJackson 3.xJSON MarshallingMavenDependency Management📂 Project StructurePlaintextsrc/main/
+🏃‍♂️ Runner Analytics
+Spring Boot MVC Web Application
+
+A robust Spring Boot MVC application for tracking running activities.
+This project showcases modern Java backend development with automated data seeding, PostgreSQL integration, and a clean RESTful architecture.
+
+🚀 Key Features
+
+🗄 Database Persistence
+Fully integrated with PostgreSQL for reliable and scalable data storage.
+
+🔄 Automated Data Seeding
+On startup, the app checks the database — if empty, it automatically loads initial data from:
+
+src/main/resources/data/runs.json
+
+📦 Spring Data JPA
+Clean repository pattern for efficient data access and abstraction.
+
+🌐 RESTful API
+Structured endpoints to manage and retrieve running activity data.
+
+📊 Structured Logging (SLF4J)
+Clear logging for data migration, startup processes, and application health.
+
+🛠️ Tech Stack
+Technology	Purpose
+Java 17+	Programming Language
+Spring Boot	Core Framework
+PostgreSQL	Relational Database
+Jackson	JSON Serialization
+Maven	Dependency Management
+📂 Project Structure
+src/main/
 ├── java/dev/murira/runner/
 │   ├── run/
 │   │   ├── Run.java                # Core Entity / Record
 │   │   ├── Runs.java               # JSON Wrapper Record
-│   │   └── RunJsonDataLoader.java  # Logic to load JSON to DB
+│   │   └── RunJsonDataLoader.java  # JSON → Database Loader
 │   └── controller/
 │       └── RunRepository.java      # JPA Repository Interface
 └── resources/
 ├── data/
-│   └── runs.json               # Initial seed data
-└── application.properties      # Database & App Config
-🚦 Getting StartedPrerequisitesJDK 17 or higher.PostgreSQL instance running locally or via Docker.Maven installed.ConfigurationUpdate your src/main/resources/application.properties with your database credentials:Propertiesspring.datasource.url=jdbc:postgresql://localhost:5432/runner_db
+│   └── runs.json               # Initial Seed Data
+└── application.properties      # App & DB Configuration
+🚦 Getting Started
+✅ Prerequisites
+
+JDK 17+
+
+PostgreSQL (local or Docker)
+
+Maven (or use the included Maven Wrapper)
+
+⚙️ Configuration
+
+Update your:
+
+src/main/resources/application.properties
+spring.datasource.url=jdbc:postgresql://localhost:5432/runner_db
 spring.datasource.username=your_username
 spring.datasource.password=your_password
 spring.jpa.hibernate.ddl-auto=update
-Installation & RunClone the repository:Bashgit clone https://github.com/GMurira/WebSpringMVC.git
+▶️ Installation & Run
+1️⃣ Clone the Repository
+git clone https://github.com/GMurira/WebSpringMVC.git
 cd WebSpringMVC
-Build the project:Bash./mvnw clean install
-Run the application:Bash./mvnw spring-boot:run
-🧪 Development WorkflowData SeedingThe RunJsonDataLoader class handles the initial import. It uses the ObjectMapper to read from the classpath.JSON Schema (runs.json):JSON{
+2️⃣ Build the Project
+./mvnw clean install
+3️⃣ Run the Application
+./mvnw spring-boot:run
+
+Application runs at:
+
+http://localhost:8080
+🧪 Development Workflow
+📥 Automatic Data Seeding
+
+The RunJsonDataLoader class:
+
+Uses ObjectMapper
+
+Reads JSON from the classpath
+
+Inserts data only if the database is empty
+
+Example runs.json
+{
 "runs": [
 {
 "id": 1,
@@ -28,4 +95,40 @@ Run the application:Bash./mvnw spring-boot:run
 }
 ]
 }
-🤝 ContributingFork the ProjectCreate your Feature Branch (git checkout -b feature/AmazingFeature)Commit your Changes (git commit -m 'Add some AmazingFeature')Push to the Branch (git push origin feature/AmazingFeature)Open a Pull RequestWould you like me to add a section on how to run this application using Docker and Docker Compose for the PostgreSQL database?
+📡 Example API Endpoints
+Method	Endpoint	Description
+GET	/runs	Fetch all runs
+GET	/runs/{id}	Fetch run by ID
+POST	/runs	Create a new run
+🐳 Docker Support (Optional Enhancement)
+
+You can containerize the application and PostgreSQL using:
+
+Docker
+
+Docker Compose
+
+If you'd like, I can generate a production-ready docker-compose.yml for this project.
+
+🤝 Contributing
+
+Fork the project
+
+Create your feature branch
+
+git checkout -b feature/AmazingFeature
+
+Commit changes
+
+git commit -m "Add AmazingFeature"
+
+Push to branch
+
+git push origin feature/AmazingFeature
+
+Open a Pull Request
+
+📌 Author
+
+Geoffrey Nguyai Murira
+Backend Developer | DevOps Enthusiast | Java & Cloud Engineer
