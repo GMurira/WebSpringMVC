@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.Assert;
 
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,7 +29,7 @@ public class RunRepository {
 
     public void create(Run run) {
         var updated = jdbcClient.sql("INSERT INTO run(id, title, started_on,completed_on)values (?,?,?,?)")
-                .params(List.of(run.id(), run.title(), run.startedOn(), run.completedOn().toString()))
+                .params(List.of(run.id(), run.title(), Timestamp.valueOf(run.startedOn()), Timestamp.valueOf(run.completedOn())))
                 .update();
 
         Assert.state(updated == 1, "Failed to create run" + run.title());
