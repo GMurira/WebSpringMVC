@@ -1,4 +1,10 @@
 package dev.murira.runner.controller;
 
-public interface RunRepository {
+import dev.murira.runner.run.Run;
+import org.springframework.data.repository.ListCrudRepository;
+
+import java.util.List;
+
+public interface RunRepository extends ListCrudRepository<Run, Integer> {
+    List<Run> findAllByTitle(String title);
 }

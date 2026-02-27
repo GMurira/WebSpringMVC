@@ -5,7 +5,6 @@ import dev.murira.runner.run.RunNotFoundException;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.Optional;
@@ -23,7 +22,7 @@ public class RunController {
     //
     @GetMapping("")
     List<Run> findAll() {
-        return runRepository.findAll();
+        return (List<Run>) runRepository.findAll();
     }
 
     @GetMapping("/{id}")
@@ -39,20 +38,25 @@ public class RunController {
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("")
     void create(@Valid @RequestBody Run run) {
-        runRepository.create(run);
+        runRepository.save(run);
     }
-//
+
+    //
 //    //put
 //    @ResponseStatus(HttpStatus.NO_CONTENT)
 //    @PutMapping("/{id}")
 //    void update(@RequestBody Run run, @PathVariable Integer id) {
 //        runRepository.update(run, id);
 //    }
+    @GetMapping("/title/{title}")
+    List<Run> findAllByTitle(@PathVariable String title) {
+        return runRepository.findAllByTitle(title);
+    }
 
     //delete
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{id}")
-    public  void delete(@PathVariable Integer id) {
-        runRepository.delete(id);
+    public void delete(@PathVariable Integer id) {
+        runRepository.delete(runRepository.findById(id).get());
     }
 }
